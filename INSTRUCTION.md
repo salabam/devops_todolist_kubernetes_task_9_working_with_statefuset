@@ -58,7 +58,7 @@ kubectl get secret mysql-secret -n mysql -o yaml
 kubectl get secret app-secret -n todoapp -o yaml
 ```
 Ensure the required Secrets (`MYSQL_ROOT_PASSWORD`, `MYSQL_USER`, `MYSQL_PASSWORD`) in mysql namespace are present.
-Ensure the required Secrets (`DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_HOST`) in mysql namespace are present.
+Ensure the required Secrets (`DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_HOST`) in todoapp namespace are present.
 
 ## 6. Validate the Database
 
