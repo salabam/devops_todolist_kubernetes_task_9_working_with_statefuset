@@ -16,12 +16,18 @@ kubectl get nodes
 ```
 Ensure all nodes have the status `Ready`.
 
-## 3. Validate the StatefulSet
+## 3. Validate the StatefulSet and Deployment
 Check the StatefulSet in the `mysql` namespace:
 ```bash
 kubectl get statefulsets -n mysql
 ```
 Ensure the StatefulSet is listed and has the desired number of replicas.
+
+Check the Deployment in the `todoapp` namespace:
+```bash
+kubectl get deployment -n todoapp  
+```
+Ensure the Deployment is listed.
 
 ## 4. Validate the Pods
 Check the pods managed by the StatefulSet:
@@ -30,20 +36,29 @@ kubectl get pods -n mysql
 ```
 Ensure all pods are in the `Running` state and have the correct names (e.g., `mysql-stateful-set-0`, `mysql-stateful-set-1`, `mysql-stateful-set-2`).
 
+Check the pods managed by the Deployment:
+```bash
+kubectl get pods -n todoapp
+```
+Ensure all pods are in the `Running` state.
+
 ## 5. Validate ConfigMaps and Secrets
 ### ConfigMaps:
-List the ConfigMaps in the `mysql` namespace:
+List the ConfigMaps in the `mysql` and `todoapp` namespaces:
 ```bash
 kubectl get configmaps mysql-init-config -n mysql -o yaml
+kubectl get configmaps app-config -n todoapp -o yaml
 ```
 Ensure the required ConfigMaps are present.
 
 ### Secrets:
-List the Secrets in the `mysql` namespace:
+List the Secrets in the `mysql` and `todoapp` namespaces:
 ```bash
 kubectl get secret mysql-secret -n mysql -o yaml
+kubectl get secret app-secret -n todoapp -o yaml
 ```
-Ensure the required Secrets (`MYSQL_ROOT_PASSWORD`, `MYSQL_USER`, `MYSQL_PASSWORD`) are present.
+Ensure the required Secrets (`MYSQL_ROOT_PASSWORD`, `MYSQL_USER`, `MYSQL_PASSWORD`) in mysql namespace are present.
+Ensure the required Secrets (`DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_HOST`) in mysql namespace are present.
 
 ## 6. Validate the Database
 
